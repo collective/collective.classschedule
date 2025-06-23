@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-25 17:12+0000\n"
+"POT-Creation-Date: 2025-06-23 22:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,3 +13,54 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.classschedule\n"
+
+#: collective/classschedule/profiles/default/types/Building.xml
+msgid "Building"
+msgstr ""
+
+#: collective/classschedule/vocabularies/room.py:12
+msgid "Chalk board"
+msgstr ""
+
+#: collective/classschedule/profiles.zcml:13
+msgid "Class Schedule: Install"
+msgstr ""
+
+#: collective/classschedule/profiles.zcml:21
+msgid "Class Schedule: Uninstall"
+msgstr ""
+
+#: collective/classschedule/profiles.zcml:13
+msgid "Package to configure a new Class Schedule site"
+msgstr ""
+
+#: collective/classschedule/vocabularies/room.py:14
+msgid "Projector"
+msgstr ""
+
+#: collective/classschedule/profiles/default/types/Room.xml
+msgid "Room"
+msgstr ""
+
+#: collective/classschedule/profiles.zcml:21
+msgid "Uninstall Class Schedule setup."
+msgstr ""
+
+#: collective/classschedule/vocabularies/room.py:13
+msgid "White board"
+msgstr ""
+
+#. Default: "Features"
+#: collective/classschedule/content/room.py:28
+msgid "label_features"
+msgstr ""
+
+#. Default: "Floor Name"
+#: collective/classschedule/content/room.py:14
+msgid "label_floor"
+msgstr ""
+
+#. Default: "Number of places"
+#: collective/classschedule/content/room.py:19
+msgid "label_nplaces"
+msgstr ""
