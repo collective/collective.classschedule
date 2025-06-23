@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
-from collective.classschedule.content.room import IRoom  # NOQA E501
-from collective.classschedule.testing import COLLECTIVE_CLASSSCHEDULE_INTEGRATION_TESTING  # noqa
+from collective.classschedule.content.room import IRoom
+from collective.classschedule.testing import (
+    COLLECTIVE_CLASSSCHEDULE_INTEGRATION_TESTING,
+)
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -11,72 +12,62 @@ from zope.component import queryUtility
 import unittest
 
 
-
-
 class RoomIntegrationTest(unittest.TestCase):
-
     layer = COLLECTIVE_CLASSSCHEDULE_INTEGRATION_TESTING
 
     def setUp(self):
         """Custom shared utility setup for tests."""
-        self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal = self.layer["portal"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
         portal_types = self.portal.portal_types
         parent_id = portal_types.constructContent(
-            'Building',
+            "Building",
             self.portal,
-            'parent_container',
-            title='Parent container',
+            "parent_container",
+            title="Parent container",
         )
         self.parent = self.portal[parent_id]
 
     def test_ct_room_schema(self):
-        fti = queryUtility(IDexterityFTI, name='Room')
+        fti = queryUtility(IDexterityFTI, name="Room")
         schema = fti.lookupSchema()
         self.assertEqual(IRoom, schema)
 
     def test_ct_room_fti(self):
-        fti = queryUtility(IDexterityFTI, name='Room')
+        fti = queryUtility(IDexterityFTI, name="Room")
         self.assertTrue(fti)
 
     def test_ct_room_factory(self):
-        fti = queryUtility(IDexterityFTI, name='Room')
+        fti = queryUtility(IDexterityFTI, name="Room")
         factory = fti.factory
         obj = createObject(factory)
 
         self.assertTrue(
             IRoom.providedBy(obj),
-            u'IRoom not provided by {0}!'.format(
-                obj,
-            ),
+            f"IRoom not provided by {obj}!",
         )
 
     def test_ct_room_adding(self):
-        setRoles(self.portal, TEST_USER_ID, ['Contributor'])
+        setRoles(self.portal, TEST_USER_ID, ["Contributor"])
         obj = api.content.create(
             container=self.parent,
-            type='Room',
-            id='room',
+            type="Room",
+            id="room",
         )
 
         self.assertTrue(
             IRoom.providedBy(obj),
-            u'IRoom not provided by {0}!'.format(
-                obj.id,
-            ),
+            f"IRoom not provided by {obj.id}!",
         )
 
         parent = obj.__parent__
-        self.assertIn('room', parent.objectIds())
+        self.assertIn("room", parent.objectIds())
 
         # check that deleting the object works too
         api.content.delete(obj=obj)
-        self.assertNotIn('room', parent.objectIds())
+        self.assertNotIn("room", parent.objectIds())
 
     def test_ct_room_globally_not_addable(self):
-        setRoles(self.portal, TEST_USER_ID, ['Contributor'])
-        fti = queryUtility(IDexterityFTI, name='Room')
-        self.assertFalse(
-            fti.global_allow,
-            u'{0} is globally addable!'.format(fti.id)
-        )
+        setRoles(self.portal, TEST_USER_ID, ["Contributor"])
+        fti = queryUtility(IDexterityFTI, name="Room")
+        self.assertFalse(fti.global_allow, f"{fti.id} is globally addable!")
