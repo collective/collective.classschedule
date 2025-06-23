@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone"
+    >
+
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+  <plone:behavior
+      name="collective.classschedule.professor"
+      title="Professor"
+      description="This behavior provides..."
+      factory=".professor.Professor"
+      provides=".professor.IProfessor"
+      marker=".professor.IProfessorMarker"
+      />
+
+
+</configure>
