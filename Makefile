@@ -128,6 +128,16 @@ test: $(VENV_FOLDER) ## run tests
 test-coverage: $(VENV_FOLDER) ## run tests with coverage
 	@uv run pytest --cov=collective.classschedule --cov-report term-missing
 
+# ## Add bobtemplates features (check bobtemplates.plone's documentation to get the list of available features)
+# add: $(VENV_FOLDER)
+# 	@uvx plonecli add -b .mrbob.ini $(filter-out $@,$(MAKECMDGOALS))
+
+.PHONY: plonecli
+plonecli: $(VENV_FOLDER) ## Install fix_packages_src_detection_for_cookieplone branch of bobtemplates.plone, waiting 7.x release
+	@uv pip install git+https://github.com/plone/bobtemplates.plone.git
+	@uv pip install plonecli
+
 ## Add bobtemplates features (check bobtemplates.plone's documentation to get the list of available features)
-add: $(VENV_FOLDER)
-	@uvx plonecli add -b .mrbob.ini $(filter-out $@,$(MAKECMDGOALS))
+add: plonecli
+#	@uvx plonecli add -b .mrbob.ini $(filter-out $@,$(MAKECMDGOALS))
+	@$(BIN_FOLDER)/plonecli add -b .mrbob.ini $(filter-out $@,$(MAKECMDGOALS))
