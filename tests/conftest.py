@@ -1,7 +1,7 @@
-from pytest_plone import fixtures_factory
 from collective.classschedule.testing import ACCEPTANCE_TESTING
 from collective.classschedule.testing import FUNCTIONAL_TESTING
 from collective.classschedule.testing import INTEGRATION_TESTING
+from pytest_plone import fixtures_factory
 
 
 pytest_plugins = ["pytest_plone"]
