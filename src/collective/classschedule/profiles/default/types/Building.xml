@@ -15,17 +15,14 @@
 
   <property name="allow_discussion">False</property>
   <property name="factory">Building</property>
-  <property name="icon_expr">string:contenttype/folder</property>
+  <property name="icon_expr">string:building</property>
   <property name="link_target" />
 
   <!-- Hierarchy control -->
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <!--
-    <element value="Document" />
-    <element value="File" />
-  -->
+    <element value="Room" />
   </property>
   <!-- Schema, class and security -->
   <property name="add_permission">collective.classschedule.AddBuilding</property>
