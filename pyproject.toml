@@ -28,6 +28,7 @@ dependencies = [
     "plone.restapi",
     "plone.volto",
     "plone.classicui",
+    "collective.z3cform.datagridfield",
 ]
 
 [project.optional-dependencies]
