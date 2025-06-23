@@ -27,7 +27,7 @@ dependencies = [
     "plone.api",
     "plone.restapi",
     "plone.volto",
-    
+    "plone.classicui",
 ]
 
 [project.optional-dependencies]
