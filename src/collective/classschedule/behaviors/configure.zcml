@@ -14,6 +14,16 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <plone:behavior
+      name="collective.classschedule.professor_assistant"
+      title="ProfessorAssistant"
+      description="This behavior provides..."
+      factory=".professor_assistant.ProfessorAssistant"
+      provides=".professor_assistant.IProfessorAssistant"
+      marker=".professor_assistant.IProfessorAssistantMarker"
+      />
+
+
+  <plone:behavior
       name="collective.classschedule.professor"
       title="Professor"
       description="This behavior provides..."

@@ -1,3 +1,4 @@
+
 from collective.classschedule import _
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.row import DictRow
@@ -12,47 +13,47 @@ from zope.interface import Interface
 from zope.interface import provider
 
 
-class IRowProfessorSchema(Interface):
+class IRowProfessorAssistantSchema(Interface):
     fullname = schema.TextLine(
         title=_("label_fullname", default="Fullname"),
         required=True,
     )
 
 
-class IProfessorMarker(Interface):
+class IProfessorAssistantMarker(Interface):
     pass
 
 
 @provider(IFormFieldProvider)
-class IProfessor(model.Schema):
+class IProfessorAssistant(model.Schema):
     """ """
 
     directives.widget(
-        "professors",
+        "professor_assistants",
         DataGridFieldFactory,
         auto_append=False,
         allow_reorder=True,
     )
 
-    professors = schema.List(
-        title=_("label_professors", default="Professors"),
-        value_type=DictRow(title="Table", schema=IRowProfessorSchema),
+    professor_assistants = schema.List(
+        title=_("label_professor_assistants", default="Professor Assistants"),
+        value_type=DictRow(title="Table", schema=IRowProfessorAssistantSchema),
         required=True,
     )
 
 
-@implementer(IProfessor)
-@adapter(IProfessorMarker)
-class Professor:
+@implementer(IProfessorAssistant)
+@adapter(IProfessorAssistantMarker)
+class ProfessorAssistant:
     def __init__(self, context):
         self.context = context
 
     @property
-    def professors(self):
-        if safe_hasattr(self.context, "professors"):
-            return self.context.professors
+    def professor_assistants(self):
+        if safe_hasattr(self.context, "professor_assistants"):
+            return self.context.professor_assistants
         return None
 
-    @professors.setter
-    def professors(self, value):
-        self.context.professors = value
+    @professor_assistants.setter
+    def professor_assistants(self, value):
+        self.context.professor_assistants = value
