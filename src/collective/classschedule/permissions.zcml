@@ -6,6 +6,12 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="collective.classschedule.AddRoom"
+        title="collective.classschedule: Add Room"
+    />
+
+
   <permission
       id="collective.classschedule.AddBuilding"
       title="collective.classschedule: Add Building"
