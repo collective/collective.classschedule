@@ -6,4 +6,10 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+  <permission
+      id="collective.classschedule.AddBuilding"
+      title="collective.classschedule: Add Building"
+      />
+
+
 </configure>
