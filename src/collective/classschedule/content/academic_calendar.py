@@ -9,8 +9,7 @@ from plone.supermodel import model
 # from z3c.form.browser.radio import RadioFieldWidget
 # from zope import schema
 from zope.interface import implementer
-
-
+from zope.schema import Date
 # from collective.classschedule import _
 
 
@@ -19,9 +18,9 @@ class IAcademicCalendar(model.Schema):
 
     # If you want, you can load a xml model created TTW here
     # and customize it in Python:
-
     # model.load('academic_calendar.xml')
-
+    Inicio = Date(title = 'Inicio')
+    Final  = Date(title = 'Final') 
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
     #     title=_(u'Sponsoring Level'),
