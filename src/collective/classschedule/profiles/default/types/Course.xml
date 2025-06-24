@@ -39,8 +39,6 @@
     <element value="collective.classschedule.professor_assistant" />
     <!-- <element value="plone.eventrecurrence" /> -->
 
-
-
   </property>
 
   <!-- View information -->
@@ -50,6 +48,7 @@
   <property name="immediate_view">view</property>
   <property name="view_methods">
     <element value="view" />
+    <element value="courseview" />
   </property>
 
   <!-- Method aliases -->
