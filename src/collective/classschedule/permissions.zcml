@@ -6,10 +6,10 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
-    <permission
-        id="collective.classschedule.AddCourse"
-        title="collective.classschedule: Add Course"
-    />
+  <permission
+      id="collective.classschedule.AddCourse"
+      title="collective.classschedule: Add Course"
+      />
 
 
   <permission

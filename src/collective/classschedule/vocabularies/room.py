@@ -1,11 +1,9 @@
 from collective.classschedule import _
+from plone import api
 from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleVocabulary
-from zope.interface import implementer
-from plone.dexterity.content import DexterityContent
-from plone import api
 from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 @provider(IVocabularyFactory)
@@ -25,7 +23,7 @@ def RoomVocabularyFactory(context):
 
     terms = []
     for brain in api.content.find(
-        portal_type="Room", 
+        portal_type="Room",
     ):
         terms.append(
             SimpleTerm(

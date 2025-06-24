@@ -1,4 +1,3 @@
-
 from collective.classschedule import _
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.row import DictRow
