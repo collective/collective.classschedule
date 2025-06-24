@@ -10,5 +10,9 @@
       name="collective.classschedule.RoomVocabulary"
       component=".room.RoomVocabularyFactory"
       />
+  <utility
+      name="collective.classschedule.DaysVocabulary"
+      component=".course.DaysVocabularyFactory"
+      />
 
 </configure>

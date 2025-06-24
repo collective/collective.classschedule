@@ -37,6 +37,7 @@
     <element value="plone.shortname"/> -->
     <element value="collective.classschedule.professor" />
     <element value="collective.classschedule.professor_assistant" />
+    <!-- <element value="plone.eventbasic" /> -->
     <!-- <element value="plone.eventrecurrence" /> -->
 
   </property>
