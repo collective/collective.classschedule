@@ -3,6 +3,8 @@
 *.pyc
 *.pyo
 
+*.mo
+    
 # tools related
 __pycache__/
 .coverage
