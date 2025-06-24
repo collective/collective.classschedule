@@ -1,13 +1,13 @@
-from plone.dexterity.content import DexterityContent
 from plone.dexterity.utils import resolveDottedName
 from zope.component import createObject
 
-
 import pytest
+
 
 # @pytest.fixture
 # def container(portal) -> DexterityContent:
 #     return portal
+
 
 @pytest.fixture
 def portal_type() -> str:

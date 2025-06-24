@@ -6,7 +6,6 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.testing.zope import WSGI_SERVER_FIXTURE
 
-import collective.classschedule
 
 
 class Layer(PloneSandboxLayer):
@@ -16,9 +15,11 @@ class Layer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import collective.z3cform.datagridfield
         import plone.restapi
 
         self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=collective.z3cform.datagridfield)
         self.loadZCML(package=collective.classschedule)
 
     def setUpPloneSite(self, portal):
