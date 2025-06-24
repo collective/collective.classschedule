@@ -25,11 +25,13 @@ def RoomVocabularyFactory(context):
     for brain in api.content.find(
         portal_type="Room",
     ):
+        obj = brain.getObject()
+        titleroom = f"{brain.Title} ({obj.aq_parent.title})"        
         terms.append(
             SimpleTerm(
-                value=brain.getObject(),
+                value=obj,
                 token=brain.UID,
-                title=brain.Title,
+                title=titleroom,
             )
         )
     return SimpleVocabulary(terms)

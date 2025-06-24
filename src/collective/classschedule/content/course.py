@@ -1,4 +1,4 @@
-# from plone.app.textfield import RichText
+from plone.app.textfield import RichText
 from collective.classschedule import _
 from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
@@ -10,7 +10,7 @@ from z3c.relationfield.schema import RelationChoice
 
 # from plone.supermodel.directives import fieldset
 # from z3c.form.browser.radio import RadioFieldWidget
-# from zope import schema
+from zope import schema
 from zope.interface import implementer
 
 
@@ -26,6 +26,26 @@ class ICourse(model.Schema):
         vocabulary="collective.classschedule.RoomVocabulary",
         required=True,
     )
+
+    group = schema.TextLine(
+        title=_("label_group", default="Group"),
+        required=True,
+    )
+
+    presentation = RichText(
+        title=_("label_presentation", default="Presentation"),
+        required=False,
+        default_mime_type="text/html",
+        allowed_mime_types=(
+            "text/html",
+            "text/plain",
+        ),
+    )
+
+    directives.order_after(location_room="*")
+    directives.order_after(group="location_room")
+    directives.order_after(presentation="group")
+
 
 
 @implementer(ICourse)
