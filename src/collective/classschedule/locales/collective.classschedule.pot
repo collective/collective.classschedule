@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-06-23 22:18+0000\n"
+"POT-Creation-Date: 2025-06-24 00:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Building"
 msgstr ""
 
-#: collective/classschedule/vocabularies/room.py:12
+#: collective/classschedule/vocabularies/room.py:14
 msgid "Chalk board"
 msgstr ""
 
@@ -33,11 +33,15 @@ msgstr ""
 msgid "Class Schedule: Uninstall"
 msgstr ""
 
+#: collective/classschedule/profiles/default/types/Course.xml
+msgid "Course"
+msgstr ""
+
 #: collective/classschedule/profiles.zcml:13
 msgid "Package to configure a new Class Schedule site"
 msgstr ""
 
-#: collective/classschedule/vocabularies/room.py:14
+#: collective/classschedule/vocabularies/room.py:16
 msgid "Projector"
 msgstr ""
 
@@ -49,7 +53,7 @@ msgstr ""
 msgid "Uninstall Class Schedule setup."
 msgstr ""
 
-#: collective/classschedule/vocabularies/room.py:13
+#: collective/classschedule/vocabularies/room.py:15
 msgid "White board"
 msgstr ""
 
@@ -63,7 +67,28 @@ msgstr ""
 msgid "label_floor"
 msgstr ""
 
+#. Default: "Fullname"
+#: collective/classschedule/behaviors/professor.py:17
+#: collective/classschedule/behaviors/professor_assistant.py:17
+msgid "label_fullname"
+msgstr ""
+
+#. Default: "Room"
+#: collective/classschedule/content/course.py:25
+msgid "label_location_room"
+msgstr ""
+
 #. Default: "Number of places"
 #: collective/classschedule/content/room.py:19
 msgid "label_nplaces"
+msgstr ""
+
+#. Default: "Professor Assistants"
+#: collective/classschedule/behaviors/professor_assistant.py:38
+msgid "label_professor_assistants"
+msgstr ""
+
+#. Default: "Professors"
+#: collective/classschedule/behaviors/professor.py:38
+msgid "label_professors"
 msgstr ""
