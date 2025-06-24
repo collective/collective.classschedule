@@ -16,19 +16,21 @@ from zope.interface import Invalid
 from zope.interface import invariant
 from zope.schema.interfaces import IContextAwareDefaultFactory
 
+from collective.classschedule import _
+
 class IAcademicCalendar(model.Schema):
     """Marker interface and Dexterity Python Schema for AcademicCalendar"""
 
     # If you want, you can load a xml model created TTW here
     # and customize it in Python:
     # model.load('academic_calendar.xml')
-    start = Date(title = 'Inicio')
-    end  = Date(title = 'Final') 
+    start = Date(title = _("label_period_start",default = "Start"))
+    end  = Date(title = _("label_period_end",default = "End")) 
     @invariant
     def validate_start_end(data):
         if data.start is not None and data.end is not None:
             if data.start > data.end:
-                raise Invalid('El final del periodo debe ser despues del inicio.')
+                raise Invalid(_('The end time must be greather tha start time. Please correct it.'))
             
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
