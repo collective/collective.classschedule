@@ -1,20 +1,20 @@
-from plone.app.textfield import RichText
 from collective.classschedule import _
+from plone.app.textfield import RichText
 from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Item
 
 # from plone.namedfile import field as namedfile
 from plone.supermodel import model
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.relationfield.schema import RelationChoice
 
 # from plone.supermodel.directives import fieldset
 # from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.interface import implementer
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from zope.interface import invariant
 from zope.interface import Invalid
+from zope.interface import invariant
 
 
 class ICourse(model.Schema):
@@ -70,7 +70,6 @@ class ICourse(model.Schema):
     directives.order_after(start_time="days")
     directives.order_after(end_time="start_time")
     directives.order_after(presentation="end_time")
-
 
     @invariant
     def validate_time(data):
