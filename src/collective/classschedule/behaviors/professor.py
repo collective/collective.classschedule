@@ -10,6 +10,9 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import provider
+from z3c.form import validator
+from zope.interface import Invalid
+import zope.component
 
 
 class IRowProfessorSchema(Interface):
@@ -39,6 +42,25 @@ class IProfessor(model.Schema):
         value_type=DictRow(title="Table", schema=IRowProfessorSchema),
         required=True,
     )
+
+
+class ProfessorRowsValidator(validator.SimpleFieldValidator):
+    """z3c.form validator class for datagrid professors
+    """
+
+    def validate(self, value):
+        """Validate the Required and empty rows
+        """
+        super(ProfessorRowsValidator, self).validate(value)
+        for row in value:
+            if not (row["fullname"]):
+                raise Invalid(_('The fullname is required. Please correct it.'))
+
+validator.WidgetValidatorDiscriminators(
+    ProfessorRowsValidator,
+    field=IProfessor['professors']
+)
+zope.component.provideAdapter(ProfessorRowsValidator)
 
 
 @implementer(IProfessor)
