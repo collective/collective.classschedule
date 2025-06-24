@@ -3,6 +3,14 @@
   <permissions>
     <!-- -*- extra stuff goes here -*- -->
 
+    <permission name="collective.classschedule: Add Course" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+      <role name="Contributor"/>
+    </permission>
+
+
     <permission acquire="True"
                 name="collective.classschedule: Add Room"
     >

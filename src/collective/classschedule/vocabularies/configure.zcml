@@ -5,5 +5,10 @@
       name="collective.classschedule.FeaturesVocabulary"
       component=".room.FeaturesVocabularyFactory"
       />
+  
+  <utility
+      name="collective.classschedule.RoomVocabulary"
+      component=".room.RoomVocabularyFactory"
+      />
 
 </configure>

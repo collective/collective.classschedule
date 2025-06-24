@@ -16,7 +16,7 @@ from zope.interface import provider
 class IRowProfessorAssistantSchema(Interface):
     fullname = schema.TextLine(
         title=_("label_fullname", default="Fullname"),
-        required=True,
+        required=False,
     )
 
 
