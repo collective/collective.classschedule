@@ -28,7 +28,7 @@ class IAcademicCalendar(model.Schema):
     def validate_start_end(data):
         if data.start is not None and data.end is not None:
             if data.start > data.end:
-                raise Invalid('El final del periodo deber despues del inicio.')
+                raise Invalid('El final del periodo debe ser despues del inicio.')
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
     #     title=_(u'Sponsoring Level'),
