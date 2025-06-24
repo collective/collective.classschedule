@@ -1,9 +1,13 @@
 from collective.classschedule import _
 from plone.autoform import directives
 from plone.dexterity.content import Item
+from plone.portlets.interfaces import ILocalPortletAssignmentManager
+from plone.portlets.interfaces import IPortletManager
 from plone.supermodel import model
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
+from zope.component import getMultiAdapter
+from zope.component import queryUtility
 from zope.interface import implementer
 
 
@@ -36,3 +40,16 @@ class IRoom(model.Schema):
 @implementer(IRoom)
 class Room(Item):
     """Content-type class for IRoom"""
+
+    def __init__(self, id=None, **kwargs):
+        super().__init__(id, **kwargs)
+
+        # Block all right column portlets by default
+        manager = queryUtility(IPortletManager, name="plone.leftcolumn")
+        if manager is not None:
+            assignable = getMultiAdapter(
+                (self, manager), ILocalPortletAssignmentManager
+            )
+            assignable.setBlacklistStatus("context", True)
+            assignable.setBlacklistStatus("group", True)
+            assignable.setBlacklistStatus("content_type", True)
