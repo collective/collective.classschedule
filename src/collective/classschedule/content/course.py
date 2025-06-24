@@ -75,7 +75,7 @@ class ICourse(model.Schema):
     @invariant
     def validate_time(data):
         if data.end_time and data.start_time > data.end_time:
-            raise Invalid(_('The end time must be grather tha start time. Please correct it.'))
+            raise Invalid(_('The end time must be greater tha start time. Please correct it.'))
     
 
 @implementer(ICourse)

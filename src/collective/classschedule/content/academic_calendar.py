@@ -30,7 +30,7 @@ class IAcademicCalendar(model.Schema):
     def validate_start_end(data):
         if data.start is not None and data.end is not None:
             if data.start > data.end:
-                raise Invalid(_('The end time must be greather tha start time. Please correct it.'))
+                raise Invalid(_('The end time must be greater tha start time. Please correct it.'))
             
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
