@@ -44,25 +44,25 @@ class IProfessorAssistant(model.Schema):
         required=False,
     )
 
-class ProfessorAssitantsRowsValidator(validator.SimpleFieldValidator):
-    """z3c.form validator class for datagrid professors assitants
-    """
+# class ProfessorAssitantsRowsValidator(validator.SimpleFieldValidator):
+#     """z3c.form validator class for datagrid professors assitants
+#     """
 
-    def validate(self, value):
-        """Validate empty rows
-        """
-        super(ProfessorAssitantsRowsValidator, self).validate(value)
+#     def validate(self, value):
+#         """Validate empty rows
+#         """
+#         super(ProfessorAssitantsRowsValidator, self).validate(value)
         
-        if value != [{'fullname': None}]:
-            for row in value:
-                if not (row["fullname"]):
-                    raise Invalid(_('The fullname is required. Please correct it.'))
+#         if value != [{'fullname': None}]:
+#             for row in value:
+#                 if not (row["fullname"]):
+#                     raise Invalid(_('The fullname is required. Please correct it.'))
 
-validator.WidgetValidatorDiscriminators(
-    ProfessorAssitantsRowsValidator,
-    field=IProfessorAssistant['professor_assistants']
-)
-zope.component.provideAdapter(ProfessorAssitantsRowsValidator)
+# validator.WidgetValidatorDiscriminators(
+#     ProfessorAssitantsRowsValidator,
+#     field=IProfessorAssistant['professor_assistants']
+# )
+# zope.component.provideAdapter(ProfessorAssitantsRowsValidator)
 
 
 @implementer(IProfessorAssistant)
