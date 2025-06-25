@@ -14,12 +14,45 @@ from z3c.form import validator
 from zope.interface import Invalid
 import zope.component
 
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.relationfield.schema import RelationChoice
+from plone.app.z3cform.widget import SelectFieldWidget
+from zope.interface import invariant
+
 
 class IRowProfessorSchema(Interface):
     fullname = schema.TextLine(
         title=_("label_fullname", default="Fullname"),
         required=False,
     )
+    directives.widget(days=CheckBoxFieldWidget)
+    days = schema.List(
+        title=_("label_days", default="Days"),
+        value_type=schema.Choice(
+            vocabulary="collective.classschedule.DaysVocabulary",
+        ),
+        required=False,
+    )
+
+    start_time = schema.Time(
+        title=_("label_start_time", default="Start Time"),
+        required=False,
+    )
+
+    end_time = schema.Time(
+        title=_("label_end_time", default="End Time"),
+        required=False,
+    )
+
+    # directives.widget(
+    #     "location_room",
+    #     SelectFieldWidget,
+    # )
+    # location_room = RelationChoice(
+    #     title=_("label_location_room", default="Room"),
+    #     vocabulary="collective.classschedule.RoomVocabulary",
+    #     required=False,
+    # )
 
 
 class IProfessorMarker(Interface):
@@ -52,9 +85,25 @@ class ProfessorRowsValidator(validator.SimpleFieldValidator):
         """Validate the Required and empty rows
         """
         super(ProfessorRowsValidator, self).validate(value)
+        
         for row in value:
             if not (row["fullname"]):
                 raise Invalid(_('The fullname is required. Please correct it.'))
+            
+            if not (row["days"]):
+                raise Invalid(_('At least one day is required. Please correct it.'))
+            
+            if not(row["start_time"]):
+                raise Invalid(_('The start time is required. Please correct it.'))
+            
+            if not(row["end_time"]):
+                raise Invalid(_('The end time is required. Please correct it.'))
+            
+            if row["start_time"] > row["end_time"]:
+                raise Invalid(_('The end time must be greater tha start time. Please correct it.'))
+
+            # if not(row["location_room"]):
+            #     raise Invalid(_('The room is required. Please correct it.'))
 
 validator.WidgetValidatorDiscriminators(
     ProfessorRowsValidator,
@@ -68,6 +117,7 @@ zope.component.provideAdapter(ProfessorRowsValidator)
 class Professor:
     def __init__(self, context):
         self.context = context
+        
 
     @property
     def professors(self):
