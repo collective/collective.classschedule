@@ -17,13 +17,47 @@
 
   <body>
 
-    <!-- plone/app/dexterity/browser/item.pt-->
     <metal:main fill-slot="content-core">
       <metal:content-core define-macro="content-core">
+        <!-- <table class="listing">
+            <tr>
+                <th>Profesor</th>
+                <td colspan="3" tal:content="structure view/w/IProfessor.professors/render"/>    
+            </tr>
+            <tr>
+                <th>Asistente</th>
+                <td colspan="3" tal:content="structure view/w/IProfessorAssistant.professor_assistants/render"/>
+            </tr>
+            <tr>
+                <th>Salón</th><td tal:content="structure view/w/location_room/render"/> 
+                <th>Grupo</th><td tal:content="structure view/w/group/render"/>
+            </tr>
+            <tr>
+                <th>Días</th><td tal:content="structure view/w/days/render"/>
+                <th>Horario</th><td><span tal:content="structure view/w/start_time/render"/> - <span tal:content="structure view/w/end_time/render"/></td>
+            </tr>
+        </table>
+        <div tal:content="structure view/w/presentation/render" /> -->
 
         <tal:block repeat="widget view/widgets/values|nothing">
           <tal:block tal:condition="python:widget.__name__ not in ('IBasic.title', 'IBasic.description', 'title', 'description',)">
             <tal:widget tal:replace="structure widget/@@ploneform-render-widget" />
+            <!-- <b>
+                <label class="horizontal"
+                        for=""
+                        tal:attributes="
+                        for widget/id;
+                        "
+                >
+                <p tal:replace="widget/label"
+                    i18n:translate=""
+                >label</p>: &nbsp;
+                </label>
+            </b>
+            <input metal:define-slot="widget"
+                    type="text"
+                    tal:replace="structure widget/render"
+            /> -->
           </tal:block>
         </tal:block>
 
