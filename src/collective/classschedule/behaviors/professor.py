@@ -18,7 +18,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.relationfield.schema import RelationChoice
 from plone.app.z3cform.widget import SelectFieldWidget
 from zope.interface import invariant
-
+from plone import api
 
 class IRowProfessorSchema(Interface):
     fullname = schema.TextLine(
@@ -101,9 +101,30 @@ class ProfessorRowsValidator(validator.SimpleFieldValidator):
             
             if row["start_time"] > row["end_time"]:
                 raise Invalid(_('The end time must be greater tha start time. Please correct it.'))
-
             # if not(row["location_room"]):
             #     raise Invalid(_('The room is required. Please correct it.'))
+
+
+
+class ProfessorScheduleValidator(validator.SimpleFieldValidator):
+        """
+        Validate the scheduled course
+        """
+        def validate(self,value):
+            super(ProfessorScheduleValidator, self).validate(value)
+            current_professor = value[0]
+            new_course_room_uid   = 0 #api.content.get_uuid(current_course.location_room)  
+            for brain in api.content.find(portal_type='Course'):
+                course            = brain.getObject()
+                if api.content.get_uuid(self.context) != api.content.get_uuid(course):
+                    for professor in course.professors:
+                        course_room_uid   = 0 #api.content.get_uuid(course.location_room)
+                        if new_course_room_uid == course_room_uid:
+                            shared_days = set(current_professor['days']).intersection(set(professor['days']))
+                            if len(shared_days) != 0:
+                                if (current_professor['start_time'] < professor['end_time']) and (professor['start_time'] < current_professor['end_time'] ):
+                                    raise Invalid(_('Check your schedule '))
+
 
 validator.WidgetValidatorDiscriminators(
     ProfessorRowsValidator,
@@ -111,6 +132,12 @@ validator.WidgetValidatorDiscriminators(
 )
 zope.component.provideAdapter(ProfessorRowsValidator)
 
+
+validator.WidgetValidatorDiscriminators(
+    ProfessorScheduleValidator,
+    field=IProfessor['professors']
+)
+zope.component.provideAdapter(ProfessorScheduleValidator)
 
 @implementer(IProfessor)
 @adapter(IProfessorMarker)
