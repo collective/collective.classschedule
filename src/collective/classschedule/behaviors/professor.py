@@ -21,7 +21,6 @@ from zope.interface import invariant
 from plone import api
 from Acquisition import aq_parent
 
-from datetime import datetime
 class IRowProfessorSchema(Interface):
     fullname = schema.TextLine(
         title=_("label_fullname", default="Fullname"),
@@ -120,27 +119,26 @@ class ProfessorScheduleValidator(validator.SimpleFieldValidator):
         """
         def validate(self,value):
             super(ProfessorScheduleValidator, self).validate(value)
-            scholar_period_uid = api.content.get_uuid(aq_parent(self.context))
+            academic_period = aq_parent(self.context).title
+            courses         = api.portal.get()[academic_period].values()
             for current_professor in value:
             #current_professor = value[0]
-                new_course_room_uid   = api.content.get_uuid(current_professor['location_room'])  
-                for brain in api.content.find(portal_type='Course'):
-                    course = brain.getObject()
-                    if scholar_period_uid == api.content.get_uuid(aq_parent(course)):
-                        if api.content.get_uuid(self.context) != api.content.get_uuid(course):
-                            for professor in course.professors:
-                                course_room_uid   = api.content.get_uuid(professor['location_room'])
-                                if new_course_room_uid == course_room_uid:
-                                    professor_days = professor['days']
-                                    shared_days = set(current_professor['days']).intersection(set(professor_days))
-                                    if len(shared_days) != 0:
-                                        end_time   = professor['end_time']
-                                        start_time = professor['start_time']
-                                        if (current_professor['start_time'] < end_time) and (start_time < current_professor['end_time'] ):
-                                            end_time_str = end_time.strftime("%I:%M %p")
-                                            start_time_str = start_time.strftime("%I:%M %p")
-                                            days_str = ", ".join(day.capitalize() for day in professor_days)
-                                            raise Invalid(_(f'Check your schedule, another professor already schedule {start_time_str} to {end_time_str}, {days_str}'))
+                new_course_room_uid   = api.content.get_uuid(current_professor['location_room'])
+                for course in courses:
+                    if api.content.get_uuid(self.context) != api.content.get_uuid(course):
+                        for professor in course.professors:
+                            course_room_uid   = api.content.get_uuid(professor['location_room'])
+                            if new_course_room_uid == course_room_uid:
+                                professor_days = professor['days']
+                                shared_days = set(current_professor['days']).intersection(set(professor_days))
+                                if len(shared_days) != 0:
+                                    end_time   = professor['end_time']
+                                    start_time = professor['start_time']
+                                    if (current_professor['start_time'] < end_time) and (start_time < current_professor['end_time'] ):
+                                        end_time_str = end_time.strftime("%I:%M %p")
+                                        start_time_str = start_time.strftime("%I:%M %p")
+                                        days_str = ", ".join(day.capitalize() for day in professor_days)
+                                        raise Invalid(_(f'Check your schedule, another professor already schedule {start_time_str} to {end_time_str}, {days_str}'))
 
 
 validator.WidgetValidatorDiscriminators(
