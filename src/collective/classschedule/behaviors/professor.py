@@ -20,6 +20,7 @@ from plone.app.z3cform.widget import SelectFieldWidget
 from zope.interface import invariant
 
 
+
 class IRowProfessorSchema(Interface):
     fullname = schema.TextLine(
         title=_("label_fullname", default="Fullname"),
@@ -44,14 +45,15 @@ class IRowProfessorSchema(Interface):
         required=False,
     )
 
-    # directives.widget(
-    #     "location_room",
-    #     SelectFieldWidget,
-    # )
+    directives.widget(
+        "location_room",
+        SelectFieldWidget,
+    )
     location_room = RelationChoice(
         title=_("label_location_room", default="Room"),
         vocabulary="collective.classschedule.RoomVocabulary",
         required=False,
+        missing_value='',
     )
 
 
@@ -104,8 +106,8 @@ class ProfessorRowsValidator(validator.SimpleFieldValidator):
             if row["start_time"] > row["end_time"]:
                 raise Invalid(_('The end time must be greater tha start time. Please correct it.'))
             
-            # if not(row["location_room"]):
-            #     raise Invalid(_('The room is required. Please correct it.'))
+            if not(row["location_room"]):
+                raise Invalid(_('The room is required. Please correct it.'))
 
             
 
