@@ -13,7 +13,7 @@ def DaysVocabularyFactory(context):
     return SimpleVocabulary([
         SimpleVocabulary.createTerm("monday", "monday", _("Monday")),
         SimpleVocabulary.createTerm("tuesday", "tuesday", _("Tuesday")),
-        SimpleVocabulary.createTerm("wendsday", "wendsday", _("Wendsday")),
+        SimpleVocabulary.createTerm("wednesday", "wednesday", _("Wednesday")),
         SimpleVocabulary.createTerm("thursday", "thursday", _("Thursday")),
         SimpleVocabulary.createTerm("friday", "friday", _("Friday")),
         SimpleVocabulary.createTerm("saturday", "saturday", _("Saturday")),
