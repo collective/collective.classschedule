@@ -51,5 +51,3 @@ class Room(Item):
                 (self, manager), ILocalPortletAssignmentManager
             )
             assignable.setBlacklistStatus("context", True)
-            assignable.setBlacklistStatus("group", True)
-            assignable.setBlacklistStatus("content_type", True)

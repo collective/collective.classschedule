@@ -20,6 +20,7 @@ from plone.app.z3cform.widget import SelectFieldWidget
 from zope.interface import invariant
 from plone import api
 
+
 class IRowProfessorSchema(Interface):
     fullname = schema.TextLine(
         title=_("label_fullname", default="Fullname"),
@@ -44,15 +45,16 @@ class IRowProfessorSchema(Interface):
         required=False,
     )
 
-    # directives.widget(
-    #     "location_room",
-    #     SelectFieldWidget,
-    # )
-    # location_room = RelationChoice(
-    #     title=_("label_location_room", default="Room"),
-    #     vocabulary="collective.classschedule.RoomVocabulary",
-    #     required=False,
-    # )
+    directives.widget(
+        "location_room",
+        SelectFieldWidget,
+    )
+    location_room = RelationChoice(
+        title=_("label_location_room", default="Room"),
+        vocabulary="collective.classschedule.RoomVocabulary",
+        required=False,
+        missing_value='',
+    )
 
 
 class IProfessorMarker(Interface):
@@ -84,7 +86,9 @@ class ProfessorRowsValidator(validator.SimpleFieldValidator):
     def validate(self, value):
         """Validate the Required and empty rows
         """
-        super(ProfessorRowsValidator, self).validate(value)
+    
+        if not(value):
+            raise Invalid(_('At least one professor is required. Please correct it.'))
         
         for row in value:
             if not (row["fullname"]):
@@ -101,8 +105,11 @@ class ProfessorRowsValidator(validator.SimpleFieldValidator):
             
             if row["start_time"] > row["end_time"]:
                 raise Invalid(_('The end time must be greater tha start time. Please correct it.'))
-            # if not(row["location_room"]):
-            #     raise Invalid(_('The room is required. Please correct it.'))
+            
+            if not(row["location_room"]):
+                raise Invalid(_('The room is required. Please correct it.'))
+
+            
 
 
 
