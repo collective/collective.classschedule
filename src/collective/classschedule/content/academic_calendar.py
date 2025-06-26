@@ -18,6 +18,11 @@ from zope.schema.interfaces import IContextAwareDefaultFactory
 
 from collective.classschedule import _
 
+from z3c.form import validator
+import zope.component
+from plone import api
+from zope.globalrequest import getRequest
+
 class IAcademicCalendar(model.Schema):
     """Marker interface and Dexterity Python Schema for AcademicCalendar"""
 
@@ -31,6 +36,28 @@ class IAcademicCalendar(model.Schema):
         if data.start is not None and data.end is not None:
             if data.start > data.end:
                 raise Invalid(_('The end time must be greater tha start time. Please correct it.'))
+            
+    @invariant 
+    def validate_name(data):
+        request = getRequest()
+        current_period_name = request.form['form.widgets.IBasic.title']
+        if data.__context__: #The object alredy exists
+            current_period_uid  = api.content.get_uuid(data.__context__) 
+            for brain in api.content.find(portal_type='AcademicCalendar'):
+                academic_period = brain.getObject()
+                if current_period_uid != api.content.get_uuid(academic_period):
+                    if current_period_name == academic_period.Title():
+                        raise Invalid(_('The name of the period have been alredy used'))
+        else:
+            for brain in api.content.find(portal_type='AcademicCalendar'):
+                academic_period = brain.getObject()
+                if current_period_name == academic_period.Title():
+                    raise Invalid(_('The name of the period have been alredy used'))
+            
+
+        
+
+        
             
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
