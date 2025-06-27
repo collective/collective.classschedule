@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.classschedule">
+<body>
+
+<metal:content-core fill-slot="content-core">
+
+  <h2 tal:content="python: view.get_summary()"></h2>
+
+  <table class="listing">
+    <tr>
+        <th><span tal:content="python:view.get_titular_title()"></span></th>
+        <th><p class="course" i18n:translate="">Place</p></th>
+        <th><p class="course" i18n:translate="">Schedule</p></th>
+    </tr>
+
+    <tr tal:repeat="results python:view.get_professors()">
+        <td><a tal:content="python:results['name']"></a></td>
+        <td>
+            <a tal:attributes="href python:results['url']" tal:content="python:results['place']"></a>
+        </td>
+        <td><a tal:content="python:results['schedule']"></a></td>
+    </tr>
+  </table>
+
+  <table class="listing">
+    <tr>
+        <th><span tal:content="python:view.get_assistant_title()"></span></th>
+    </tr>
+
+    <tr tal:repeat="results python:view.get_assistant()">
+        <td><a tal:content="python:results['name']"></a></td>
+    </tr>
+  </table>
+
+</metal:content-core>
+
+</body>
+</html>
