@@ -29,7 +29,7 @@ def RoomVocabularyFactory(context):
         titleroom = f"{brain.Title} ({obj.aq_parent.title})"        
         terms.append(
             SimpleTerm(
-                value=obj,
+                value=brain.UID,
                 token=brain.UID,
                 title=titleroom,
             )
