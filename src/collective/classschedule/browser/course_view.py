@@ -27,6 +27,26 @@ class CourseView(WidgetsView):
         connector1 = _("to")
         connector2 = _("in the building")
         for professor in self.context.professors:
+            days = professor["days"]
+            days = sorted(
+                days,
+                key=[
+                    "monday",
+                    "tuesday",
+                    "wednesday",
+                    "thursday",
+                    "friday",
+                    "saturday",
+                    "sunday",
+                ].index,
+            )
+            days = [
+                api.portal.translate(
+                    day.capitalize(), domain="collective.classschedule", lang=language
+                )[0:3]
+                for day in days
+            ]
+            days_str = ", ".join(day for day in days)
             professor_name = professor["fullname"]
             room_uid = professor["location_room"]
             room = api.content.get(UID=room_uid)
@@ -54,6 +74,7 @@ class CourseView(WidgetsView):
                 "place": place,
                 "schedule": schedule,
                 "url": url,
+                "days": days_str,
             })
         return results
 

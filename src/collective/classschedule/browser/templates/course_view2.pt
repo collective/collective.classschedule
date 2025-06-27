@@ -20,6 +20,9 @@
           <th><p class="course"
                i18n:translate=""
             >Schedule</p></th>
+          <th><p class="course"
+               i18n:translate=""
+            >Days</p></th>
         </tr>
 
         <tr tal:repeat="results python:view.get_professors()">
@@ -32,6 +35,7 @@
             ></a>
           </td>
           <td><a tal:content="python:results['schedule']"></a></td>
+          <td><a tal:content="python:results['days']"></a></td>
         </tr>
       </table>
 
