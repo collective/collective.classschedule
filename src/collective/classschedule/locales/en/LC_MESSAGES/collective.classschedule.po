@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-06-27 21:42+0000\n"
+"POT-Creation-Date: 2025-06-27 23:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,19 +18,19 @@ msgstr ""
 msgid "Academic Calendar"
 msgstr ""
 
-#: collective/classschedule/browser/course_view.py:61
+#: collective/classschedule/browser/course_view.py:80
 msgid "Assistant"
 msgstr ""
 
-#: collective/classschedule/browser/course_view.py:62
+#: collective/classschedule/browser/course_view.py:81
 msgid "Assistants"
 msgstr ""
 
-#: collective/classschedule/behaviors/professor.py:100
+#: collective/classschedule/behaviors/professor.py:96
 msgid "At least one day is required. Please correct it."
 msgstr ""
 
-#: collective/classschedule/behaviors/professor.py:93
+#: collective/classschedule/behaviors/professor.py:89
 msgid "At least one professor is required. Please correct it."
 msgstr ""
 
@@ -40,6 +40,10 @@ msgstr ""
 
 #: collective/classschedule/vocabularies/room.py:14
 msgid "Chalk board"
+msgstr ""
+
+#: collective/classschedule/behaviors/professor.py:148
+msgid "Check your schedule "
 msgstr ""
 
 #: collective/classschedule/profiles.zcml:13
@@ -54,11 +58,15 @@ msgstr ""
 msgid "Course"
 msgstr ""
 
-#: collective/classschedule/vocabularies/course.py:18
+#: collective/classschedule/browser/templates/course_view2.pt:23
+msgid "Days"
+msgstr ""
+
+#: collective/classschedule/vocabularies/course.py:16
 msgid "Friday"
 msgstr ""
 
-#: collective/classschedule/vocabularies/course.py:14
+#: collective/classschedule/vocabularies/course.py:12
 msgid "Monday"
 msgstr ""
 
@@ -66,15 +74,15 @@ msgstr ""
 msgid "Package to configure a new Class Schedule site"
 msgstr ""
 
-#: collective/classschedule/browser/templates/course_view.pt:15
+#: collective/classschedule/browser/templates/course_view2.pt:17
 msgid "Place"
 msgstr ""
 
-#: collective/classschedule/browser/course_view.py:56
+#: collective/classschedule/browser/course_view.py:75
 msgid "Professor"
 msgstr ""
 
-#: collective/classschedule/browser/course_view.py:57
+#: collective/classschedule/browser/course_view.py:76
 msgid "Professors"
 msgstr ""
 
@@ -86,48 +94,48 @@ msgstr ""
 msgid "Room"
 msgstr ""
 
-#: collective/classschedule/vocabularies/course.py:19
+#: collective/classschedule/vocabularies/course.py:17
 msgid "Saturday"
 msgstr ""
 
-#: collective/classschedule/browser/templates/course_view.pt:16
+#: collective/classschedule/browser/templates/course_view2.pt:20
 msgid "Schedule"
 msgstr ""
 
-#: collective/classschedule/vocabularies/course.py:20
+#: collective/classschedule/vocabularies/course.py:18
 msgid "Sunday"
 msgstr ""
 
-#: collective/classschedule/behaviors/professor.py:106
+#: collective/classschedule/behaviors/professor.py:102
 msgid "The end time is required. Please correct it."
 msgstr ""
 
-#: collective/classschedule/behaviors/professor.py:109
-#: collective/classschedule/content/academic_calendar.py:38
+#: collective/classschedule/behaviors/professor.py:106
+#: collective/classschedule/content/academic_calendar.py:37
 msgid "The end time must be greater tha start time. Please correct it."
 msgstr ""
 
-#: collective/classschedule/behaviors/professor.py:97
+#: collective/classschedule/behaviors/professor.py:93
 msgid "The fullname is required. Please correct it."
 msgstr ""
 
-#: collective/classschedule/content/academic_calendar.py:50
+#: collective/classschedule/content/academic_calendar.py:52
 msgid "The name of the period have been alredy used"
 msgstr ""
 
-#: collective/classschedule/behaviors/professor.py:112
+#: collective/classschedule/behaviors/professor.py:110
 msgid "The room is required. Please correct it."
 msgstr ""
 
-#: collective/classschedule/behaviors/professor.py:103
+#: collective/classschedule/behaviors/professor.py:99
 msgid "The start time is required. Please correct it."
 msgstr ""
 
-#: collective/classschedule/vocabularies/course.py:17
+#: collective/classschedule/vocabularies/course.py:15
 msgid "Thursday"
 msgstr ""
 
-#: collective/classschedule/vocabularies/course.py:15
+#: collective/classschedule/vocabularies/course.py:13
 msgid "Tuesday"
 msgstr ""
 
@@ -135,7 +143,7 @@ msgstr ""
 msgid "Uninstall Class Schedule setup."
 msgstr ""
 
-#: collective/classschedule/vocabularies/course.py:16
+#: collective/classschedule/vocabularies/course.py:14
 msgid "Wednesday"
 msgstr ""
 
@@ -143,17 +151,25 @@ msgstr ""
 msgid "White board"
 msgstr ""
 
+#: collective/classschedule/behaviors/professor.py:149
+msgid "another professor already schedule "
+msgstr ""
+
+#: collective/classschedule/browser/course_view.py:30
+msgid "days"
+msgstr ""
+
 #: collective/classschedule/browser/course_view.py:28
 msgid "in the building"
 msgstr ""
 
 #. Default: "Days"
-#: collective/classschedule/behaviors/professor.py:33
+#: collective/classschedule/behaviors/professor.py:31
 msgid "label_days"
 msgstr ""
 
 #. Default: "End Time"
-#: collective/classschedule/behaviors/professor.py:46
+#: collective/classschedule/behaviors/professor.py:44
 msgid "label_end_time"
 msgstr ""
 
@@ -168,13 +184,13 @@ msgid "label_floor"
 msgstr ""
 
 #. Default: "Fullname"
-#: collective/classschedule/behaviors/professor.py:28
-#: collective/classschedule/behaviors/professor_assistant.py:21
+#: collective/classschedule/behaviors/professor.py:26
+#: collective/classschedule/behaviors/professor_assistant.py:17
 msgid "label_fullname"
 msgstr ""
 
 #. Default: "Room"
-#: collective/classschedule/behaviors/professor.py:55
+#: collective/classschedule/behaviors/professor.py:53
 msgid "label_location_room"
 msgstr ""
 
@@ -184,32 +200,32 @@ msgid "label_nplaces"
 msgstr ""
 
 #. Default: "End"
-#: collective/classschedule/content/academic_calendar.py:33
+#: collective/classschedule/content/academic_calendar.py:29
 msgid "label_period_end"
 msgstr ""
 
 #. Default: "Start"
-#: collective/classschedule/content/academic_calendar.py:32
+#: collective/classschedule/content/academic_calendar.py:28
 msgid "label_period_start"
 msgstr ""
 
 #. Default: "Presentation"
-#: collective/classschedule/content/course.py:27
+#: collective/classschedule/content/course.py:22
 msgid "label_presentation"
 msgstr ""
 
 #. Default: "Professor Assistants"
-#: collective/classschedule/behaviors/professor_assistant.py:42
+#: collective/classschedule/behaviors/professor_assistant.py:38
 msgid "label_professor_assistants"
 msgstr "Ayudante"
 
 #. Default: "Professors"
-#: collective/classschedule/behaviors/professor.py:78
+#: collective/classschedule/behaviors/professor.py:76
 msgid "label_professors"
 msgstr "Profesor"
 
 #. Default: "Start Time"
-#: collective/classschedule/behaviors/professor.py:41
+#: collective/classschedule/behaviors/professor.py:39
 msgid "label_start_time"
 msgstr ""
 
