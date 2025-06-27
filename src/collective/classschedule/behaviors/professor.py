@@ -21,6 +21,8 @@ from zope.interface import invariant
 from plone import api
 from Acquisition import aq_parent
 
+from collective.classschedule.content import course as tem_course
+
 class IRowProfessorSchema(Interface):
     fullname = schema.TextLine(
         title=_("label_fullname", default="Fullname"),
@@ -49,7 +51,7 @@ class IRowProfessorSchema(Interface):
         "location_room",
         SelectFieldWidget,
     )
-    location_room = RelationChoice(
+    location_room = schema.Choice( 
         title=_("label_location_room", default="Room"),
         vocabulary="collective.classschedule.RoomVocabulary",
         required=False,
@@ -119,15 +121,18 @@ class ProfessorScheduleValidator(validator.SimpleFieldValidator):
         """
         def validate(self,value):
             super(ProfessorScheduleValidator, self).validate(value)
-            academic_period = aq_parent(self.context).title
+            #Validate de context
+            if isinstance(self.context,tem_course.Course): #Editing
+                academic_period = aq_parent(self.context).Title()
+            else:
+                academic_period = self.context.Title()
             courses         = api.portal.get()[academic_period].values()
             for current_professor in value:
-            #current_professor = value[0]
-                new_course_room_uid   = api.content.get_uuid(current_professor['location_room'])
+                new_course_room_uid = current_professor['location_room']
                 for course in courses:
                     if api.content.get_uuid(self.context) != api.content.get_uuid(course):
                         for professor in course.professors:
-                            course_room_uid   = api.content.get_uuid(professor['location_room'])
+                            course_room_uid   = professor['location_room']
                             if new_course_room_uid == course_room_uid:
                                 professor_days = professor['days']
                                 shared_days = set(current_professor['days']).intersection(set(professor_days))
