@@ -10,7 +10,7 @@
         for ="collective.classschedule.content.course.ICourse"
         class=".course_view.CourseView"
         permission="zope2.View"
-        template="templates/course_view.pt"
+        template="templates/course_view2.pt"
     />
 
 
