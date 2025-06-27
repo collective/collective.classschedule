@@ -4,7 +4,10 @@
 >
 
   <!-- -*- extra stuff goes here -*- -->
-  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+  <record field="displayed_types"
+          interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema"
+          name="plone.displayed_types"
+  >
     <value purge="False">
       <element>Building</element>
     </value>

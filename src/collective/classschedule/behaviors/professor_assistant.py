@@ -10,10 +10,6 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.interface import provider
-from z3c.form import validator
-from zope.interface import Invalid
-import zope.component
-
 
 
 class IRowProfessorAssistantSchema(Interface):
@@ -44,6 +40,7 @@ class IProfessorAssistant(model.Schema):
         required=False,
     )
 
+
 # class ProfessorAssitantsRowsValidator(validator.SimpleFieldValidator):
 #     """z3c.form validator class for datagrid professors assitants
 #     """
@@ -52,7 +49,7 @@ class IProfessorAssistant(model.Schema):
 #         """Validate empty rows
 #         """
 #         super(ProfessorAssitantsRowsValidator, self).validate(value)
-        
+
 #         if value != [{'fullname': None}]:
 #             for row in value:
 #                 if not (row["fullname"]):

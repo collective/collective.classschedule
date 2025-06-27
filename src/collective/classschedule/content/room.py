@@ -41,8 +41,8 @@ class IRoom(model.Schema):
 class Room(Item):
     """Content-type class for IRoom"""
 
-    def __init__(self, id=None, **kwargs):
-        super().__init__(id, **kwargs)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
         # Block all right column portlets by default
         manager = queryUtility(IPortletManager, name="plone.leftcolumn")

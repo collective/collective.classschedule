@@ -1,7 +1,7 @@
 from zope.schema.vocabulary import SimpleVocabulary
 
-
 import pytest
+
 
 class TestVocab:
     name = "collective.classschedule.DaysVocabulary"
@@ -14,11 +14,7 @@ class TestVocab:
         assert isinstance(self.vocab, SimpleVocabulary)
 
     @pytest.mark.parametrize(
-        "token,title",
-        [
-            ('monday', 'Monday'),
-            ('sunday', 'Sunday')
-        ]
+        "token,title", [("monday", "Monday"), ("sunday", "Sunday")]
     )
     def test_vocab_terms(self, token: str, title: str):
         term = self.vocab.getTermByToken(token)

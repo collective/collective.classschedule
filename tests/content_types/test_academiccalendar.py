@@ -4,7 +4,6 @@ from zope.component import createObject
 import pytest
 
 
-
 @pytest.fixture
 def portal_type() -> str:
     return "AcademicCalendar"

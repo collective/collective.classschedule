@@ -1,8 +1,6 @@
 from collective.classschedule import _
-from plone import api
 from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
@@ -18,5 +16,4 @@ def DaysVocabularyFactory(context):
         SimpleVocabulary.createTerm("friday", "friday", _("Friday")),
         SimpleVocabulary.createTerm("saturday", "saturday", _("Saturday")),
         SimpleVocabulary.createTerm("sunday", "sunday", _("Sunday")),
- 
     ])

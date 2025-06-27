@@ -4,7 +4,7 @@ import pytest
 
 
 class TestVocab:
-    name="collective.classschedule.FeaturesVocabulary"
+    name = "collective.classschedule.FeaturesVocabulary"
 
     @pytest.fixture(autouse=True)
     def _setup(self, portal, get_vocabulary):
@@ -19,7 +19,7 @@ class TestVocab:
             ("chalk_board", "Chalk board"),
             ("white_board", "White board"),
             ("projector", "Projector"),
-        ]
+        ],
     )
     def test_vocab_terms(self, token: str, title: str):
         term = self.vocab.getTermByToken(token)

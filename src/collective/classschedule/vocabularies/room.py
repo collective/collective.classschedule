@@ -26,7 +26,7 @@ def RoomVocabularyFactory(context):
         portal_type="Room",
     ):
         obj = brain.getObject()
-        titleroom = f"{brain.Title} ({obj.aq_parent.title})"        
+        titleroom = f"{brain.Title} ({obj.aq_parent.title})"
         terms.append(
             SimpleTerm(
                 value=brain.UID,
