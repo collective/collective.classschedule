@@ -21,10 +21,6 @@ def post_install(context):
     registry = getUtility(IRegistry)
     settings = registry.forInterface(INavigationSchema, prefix="plone")
     displayed_types = settings.displayed_types
-    # settings.displayed_types = tuple(
-    #     list(displayed_types)
-    #     + ["Community", "IMCollection", "Commissions", "Departments"]
-    # )
     display_contents = [
         *list(displayed_types),
         "AcademicCalendar",
