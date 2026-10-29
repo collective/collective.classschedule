@@ -1,5 +1,5 @@
 from collective.classschedule import _
-from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
+from collective.z3cform.datagridfield.blockdatagridfield import BlockDataGridFieldWidget
 from collective.z3cform.datagridfield.row import DictRow
 from plone import schema
 from plone.autoform import directives
@@ -27,11 +27,13 @@ class IProfessorAssistantMarker(Interface):
 class IProfessorAssistant(model.Schema):
     """ """
 
+    # DataGridFieldFactory
     directives.widget(
         "professor_assistants",
-        DataGridFieldFactory,
+        BlockDataGridFieldWidget,
         auto_append=False,
         allow_reorder=True,
+        display_table_css_class="listing datagridwidget-table-view",
     )
 
     professor_assistants = schema.List(

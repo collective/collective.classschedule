@@ -1,7 +1,7 @@
 from Acquisition import aq_parent
 from collective.classschedule import _
 from collective.classschedule.content import course as tem_course
-from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
+from collective.z3cform.datagridfield.blockdatagridfield import BlockDataGridFieldWidget
 from collective.z3cform.datagridfield.row import DictRow
 from plone import api
 from plone import schema
@@ -67,9 +67,10 @@ class IProfessor(model.Schema):
 
     directives.widget(
         "professors",
-        DataGridFieldFactory,
+        BlockDataGridFieldWidget,
         auto_append=False,
         allow_reorder=True,
+        display_table_css_class="listing datagridwidget-table-view",
     )
 
     professors = schema.List(
